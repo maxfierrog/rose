@@ -1,0 +1,5 @@
+# Random MacOS thingy
+.DS_Store
+
+# Generated binaries
+/target
