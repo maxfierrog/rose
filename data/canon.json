@@ -1,36 +1,36 @@
 {
     "vault": {
         "0. Maps of Content": [
-            ".* MOC"
+            "!.* MOC"
         ],
         "1. Generated": {
-            ".*": {
+            "!.*": {
 
             }
         },
         "2. Technical Documentation": {
-            ".*": {
+            "!.*": {
 
             }
         },
         "3. Administrative Documentation": {
-            ".*": {
+            "!.*": {
 
             }
         },
         "4. Projects": {
             "Active": {
-                ".*": [
+                "!.*": [
                     "0. TODO",
                     "1. General Specification",
-                    ".*"
+                    "!.*"
                 ]
             },
             "Archive": {
-                "\\d\\d\\d\\d ((Fall)|(Spring))": {
-                    ".*": [
+                "!\\d\\d\\d\\d ((Fall)|(Spring))": {
+                    "!.*": [
                         "1. General Specification",
-                        ".*"
+                        "!.*"
                     ]
                 }
             }

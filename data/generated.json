@@ -1,0 +1,145 @@
+{
+    "file": {
+        "content": {
+            "name": "file_name",
+            "date": false,
+            "tags": [
+                "project_name",
+                "module_name"
+            ],
+            "types": {
+                "title": "name",
+                "description": "comment",
+                "fields": true,
+                "field_types": true
+            },
+            "functions": {
+                "title": "signature",
+                "description": "comment",
+                "line_count": false
+            },
+            "constants": {
+                "title": "name",
+                "description": "comment"
+            },
+            "statistics": {
+                "title": false,
+                "line_count": true,
+                "definitions": true
+            },
+            "dependencies": {
+                "title": true,
+                "descriptions": false
+            },
+            "header": {
+                "author_name": true,
+                "creation_date": true,
+                "contact_info": true,
+                "description": true
+            },
+            "links": {
+                "required_by": false,
+                "requires": true
+            }
+        },
+        "visuals": {
+            "buffers": {
+                "across_sections": 2,
+                "beneath_titles": 0,
+                "within_sections": 1
+            },
+            "order": [
+                "date",
+                "tags",
+                "header",
+                "statistics",
+                "dependencies",
+                "types",
+                "constants",
+                "functions"
+            ],
+            "format": {
+                "types": {
+                    "title": {
+                        "size": 2,
+                        "type": "bold"
+                    },
+                    "description": {
+                        "size": 0,
+                        "type": "regular"
+                    },
+                    "fields": {
+                        "size": 1,
+                        "type": "italics"
+                    }
+                },
+                "functions": {
+                    "title": {
+                        "size": 2,
+                        "type": "bold"
+                    },
+                    "description": {
+                        "size": 0,
+                        "type": "regular"
+                    },
+                    "line_count": {
+                        "size": 0,
+                        "type": "regular"
+                    }
+                },
+                "constants": {
+                    "title": {
+                        "size": 2,
+                        "type": "bold"
+                    },
+                    "description": {
+                        "size": 0,
+                        "type": "regular"
+                    }
+                },
+                "statistics": {
+                    "title": {
+                        "size": 2,
+                        "type": "bold"
+                    },
+                    "data": {
+                        "size": 0,
+                        "type": "regular"
+                    }
+                },
+                "dependencies": {
+                    "title": {
+                        "size": 2,
+                        "type": "bold"
+                    },
+                    "names": {
+                        "size": 1,
+                        "type": "regular"
+                    },
+                    "descriptions": {
+                        "size": 0,
+                        "type": "regular"
+                    }
+                },
+                "header": {
+                    "author_name": {
+                        "size": 0,
+                        "type": "regular"
+                    },
+                    "creation_date": {
+                        "size": 0,
+                        "type": "regular"
+                    },
+                    "contact_info": {
+                        "size": 0,
+                        "type": "regular"
+                    },
+                    "description": {
+                        "size": 0,
+                        "type": "regular"
+                    }
+                }
+            }
+        }
+    }
+}
