@@ -41,15 +41,15 @@ fn finished_actions() -> bool {
         label(" "),
         label("Are you finished taking actions?"),
         label(" "),
-        button("Yes"),
-        button("No")
+        button("YES"),
+        button("NO")
     ]);
     run(&menu);
     clear_screen();
     let mm = mut_menu(&menu);
     match mm.selected_item_name() {
-        "Yes"   => true,
-        "No"    => false,
+        "YES"   => true,
+        "NO"    => false,
         _ => panic!("Unsafe input.")
     }
 }
@@ -62,7 +62,7 @@ fn action_menu() {
         label(" "),
         scroll("Action:", vec!["Build", "Check", "Add", "Remove"]),
         label(" "),
-        button("SELECT")
+        button("NEXT")
     ]);
     run(&menu);
     let mm = mut_menu(&menu);
