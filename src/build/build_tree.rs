@@ -13,7 +13,7 @@ pub fn docs_from_canon_check(source: &str, dest: &str) {
         return
     }
     if !folder_exists(dest) {
-        print_error_and_exit(12, "Destination folder does not exist at\nthe provided path. Please verify the specified\nsource path");
+        print_error_and_exit(12, "Destination folder does not exist at\nthe provided path. Please verify the specified\ndestination directory path");
         return
     }
     if !json_canon_ok(source) {
