@@ -57,8 +57,12 @@ fn doctree_menu() {
         let source = mm.selection_value("Source path:");
         let dest = mm.selection_value("Destination:");
         match mm.selection_value("Source type:") {
-            "Project Directory" => { docs_from_project_check(source, dest); },
-            "Canonical File"    => { docs_from_canon_check(source, dest);   },
+            "Project Directory" => { 
+                docs_from_project_check(false, source, dest); 
+            },
+            "Canonical File" => { 
+                docs_from_canon_check(false, source, dest);   
+            },
             _ => panic!("Unsafe input.")
         };
     };
@@ -154,7 +158,7 @@ fn docfile_both_menu() {
 }
 
 
-/* HELPER METHODS */
+/* HELPER FUNCTIONS */
 
 /* Prints a pane header for orientation. */
 fn print_builder_menu_header() {

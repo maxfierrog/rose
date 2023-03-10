@@ -13,16 +13,19 @@ pub fn clear_screen() {
     print!("\x1B[2J\x1B[1;1H");
 }
 
-/* Errors and exits with non-0 exit code. */
-pub fn print_error_and_exit(code: i32, msg: &str) {
-    clear_screen();
-    println!("");
-    println!("-------------------------------------------------");
-    println!("");
-    println!("Error {}: {}.", code, msg);
-    println!("");
-    println!("-------------------------------------------------");
-    println!("");
+/* Errors and exits with non-0 exit code. It prints error information if
+silent mode is off. */
+pub fn print_error_and_exit(silent: bool, code: i32, msg: &str) {
+    if !silent {
+        clear_screen();
+        println!("");
+        println!("-------------------------------------------------");
+        println!("");
+        println!("Error {}: {}.", code, msg);
+        println!("");
+        println!("-------------------------------------------------");
+        println!("");
+    }
     process::exit(code);
 }
 

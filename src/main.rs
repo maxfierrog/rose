@@ -8,7 +8,7 @@ pub mod build;
 pub mod check;
 pub mod add;
 
-
+use std::env;
 use core::panic;
 use terminal_menu::{menu, label, button, scroll, run, mut_menu};
 use remove::remover_menu;
@@ -18,17 +18,33 @@ use add::adder_menu;
 use utils::*;
 
 
-/* MAIN FUNCTION */
+/* ENTRY */
 
 /* Main I/O loop -- allows user to do more actions if they are not finished
 after taking one. */
 fn main() {
-    clear_screen();
-    loop {
-        action_menu();
+    let args: Vec<String> = env::args().collect();
+    let mode: bool = args.len() == 1;
+    if mode {
         clear_screen();
-        if finished_actions() { break; }
-    };
+        loop {
+            action_menu();
+            clear_screen();
+            if finished_actions() { break; }
+        };
+    } else {
+        handle_arguments(args);
+    }
+}
+
+
+/* COMMAND MODE ARGUMENT HANDLING */
+
+/* Accepts the arguments handed to the program and executes the appropriate
+action without printing anything, or exits with the correct error code should
+something go wrong in the process (also without printing anything). */
+fn handle_arguments(args: Vec<String>) {
+
 }
 
 
@@ -78,7 +94,7 @@ fn action_menu() {
 }
 
 
-/* HELPER METHODS */
+/* HELPER FUNCTIONS */
 
 /* Prints a welcome message and returns the amount of new lines it
 printed so they can be deleted later. */
