@@ -2,7 +2,8 @@
 // maxfierro@berkeley.edu
 // 2023 Mar 9
 
-use crate::utils::{file_exists, folder_exists, json_canon_ok, print_error_and_exit};
+use crate::{utils::{file_exists, folder_exists, json_canon_ok}, errors::*};
+use std::path::Path;
 
 
 /* FILE CHECKER FUNCTIONS */
@@ -11,34 +12,45 @@ use crate::utils::{file_exists, folder_exists, json_canon_ok, print_error_and_ex
 completing action (generating a doctree from a canon JSON). */
 pub fn docs_from_canon_check(silent: bool, source: &str, dest: &str) {
     if !file_exists(source) {
-        print_error_and_exit(silent, 11, "JSON structure specifier file does not\nexist at the provided path. Please verify the\nspecified source path");
+        error_11(silent);
         return
     }
     if !folder_exists(dest) {
-        print_error_and_exit(silent, 12, "Destination folder does not exist at\nthe provided path. Please verify the specified\ndestination directory path");
+        error_12(silent);
         return
     }
     if !json_canon_ok(source) {
-        print_error_and_exit(silent, 13, "JSON structure specifier file does not\nconform to Rose specification. Please verify that\nsthe fields and values are valid");
+        error_21(silent);
         return
     }
-
+    let source = Path::new(source);
+    let dest = Path::new(dest);
+    docs_from_canon(source, dest);
 }
 
 /* Checks that all referenced files exist and confirms with user before 
 completing action (generating a doctree from a project). */
 pub fn docs_from_project_check(silent: bool, source: &str, dest: &str) {
     if !folder_exists(source) {
-        print_error_and_exit(silent, 21, "Specified project directory does not\nexist at the provided path. Please verify the\nsource path");
+        error_11(silent);
         return
     }
     if !folder_exists(dest) {
-        print_error_and_exit(silent, 12, "Destination folder does not exist at\nthe provided path. Please verify the specified\ndestination directory path");
+        error_12(silent);
         return
     }
-
+    let source = Path::new(source);
+    let dest = Path::new(dest);
+    docs_from_project(source, dest);
 }
 
 
 /* EXECUTIONERS */
 
+fn docs_from_canon(source: &Path, dest: &Path) {
+    // TODO
+}
+
+fn docs_from_project(source: &Path, dest: &Path) {
+    // TODO
+}

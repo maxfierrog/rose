@@ -7,6 +7,7 @@ pub mod remove;
 pub mod build;
 pub mod check;
 pub mod add;
+pub mod errors;
 
 use std::env;
 use core::panic;
@@ -16,6 +17,15 @@ use build::builder_menu;
 use check::checker_menu;
 use add::adder_menu;
 use utils::*;
+
+
+/* GLOBAL VALUES */
+
+/* Full command options */
+const LONG_OPTIONS: [&str; 1] = ["-silent"];
+
+/* Shorthands for command options */
+const SHORT_OPTIONS: [&str; 1] = ["-S"];
 
 
 /* ENTRY */
