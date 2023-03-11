@@ -10,6 +10,7 @@ use terminal_menu::{label, menu, button, string, run, mut_menu, scroll};
 use build_tree::{docs_from_canon_check, docs_from_project_check};
 use build_file::{docfile_from_code_check, docfile_from_both_check, docfile_from_template_check};
 
+
 /* BUILDER MENU*/
 
 /* Allows the user to create a single documentation file, providing the option

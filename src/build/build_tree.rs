@@ -2,7 +2,8 @@
 // maxfierro@berkeley.edu
 // 2023 Mar 9
 
-use crate::{utils::{file_exists, folder_exists, json_canon_ok}, errors::*};
+use crate::utils::{file_exists, folder_exists, json_canon_ok};
+use crate::help::error::{error_101, error_102, error_201};
 use std::path::Path;
 
 
@@ -12,15 +13,15 @@ use std::path::Path;
 completing action (generating a doctree from a canon JSON). */
 pub fn docs_from_canon_check(silent: bool, source: &str, dest: &str) {
     if !file_exists(source) {
-        error_11(silent);
+        error_101(silent);
         return
     }
     if !folder_exists(dest) {
-        error_12(silent);
+        error_102(silent);
         return
     }
     if !json_canon_ok(source) {
-        error_21(silent);
+        error_201(silent);
         return
     }
     let source = Path::new(source);
@@ -32,11 +33,11 @@ pub fn docs_from_canon_check(silent: bool, source: &str, dest: &str) {
 completing action (generating a doctree from a project). */
 pub fn docs_from_project_check(silent: bool, source: &str, dest: &str) {
     if !folder_exists(source) {
-        error_11(silent);
+        error_101(silent);
         return
     }
     if !folder_exists(dest) {
-        error_12(silent);
+        error_102(silent);
         return
     }
     let source = Path::new(source);

@@ -6,8 +6,9 @@ pub mod utils;
 pub mod remove;
 pub mod build;
 pub mod check;
+pub mod help;
 pub mod add;
-pub mod errors;
+
 
 use std::env;
 use core::panic;
@@ -16,24 +17,51 @@ use remove::remover_menu;
 use build::builder_menu;
 use check::checker_menu;
 use add::adder_menu;
-use utils::*;
+use utils::{clear_screen};
+use clap::Parser;
+
+
+#[derive(Parser, Debug)]
+struct Args {
+   #[arg(short, long)]
+   source: String,
+   
+   #[arg(short, long)]
+   destination: String,
+
+   #[arg(short, long)]
+   canon: String,
+}
+
 
 
 /* GLOBAL VALUES */
 
-/* Full command options */
-const LONG_OPTIONS: [&str; 1] = ["-silent"];
+/* Command names (should be in plaintext). */
+const COMMANDS: [&str; 4] = ["doctree", "docfile", "add", "remove"];
 
-/* Shorthands for command options */
-const SHORT_OPTIONS: [&str; 1] = ["-S"];
+/* Full argument options (should be in the format "--{}="). */
+const LONG_OPTIONS: [&str; 3] = ["source", "dest", "canon"];
+
+/* Shorthands for argument options (should be in the format "-{}="). */
+const SHORT_OPTIONS: [&str; 3] = ["s", "d", "c"];
+
+/* Full flags (should be prefixed with "--"). */
+const LONG_FLAGS: [&str; 3] = ["quiet", "verbose", "yes"];
+
+/* Shorthands for flags (should be prefixed with "-"). */
+const SHORT_FLAGS: [&str; 3] = ["q", "v", "y"];
 
 
 /* ENTRY */
 
-/* Main I/O loop -- allows user to do more actions if they are not finished
-after taking one. */
+/* Main I/O loop. There are two modes for this program: 1) standard UNIX CLI
+command style, where you pass in a command with options and arguments, and 2)
+an interactive full-screen interface for ease of use. The interactive mode
+is activated when only 'rose' is executed. Otherwise, we assume that the user
+wanted to execute a UNIX style command, and display help and whatnot. */
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args: Vec<_> = env::args().collect();
     let mode: bool = args.len() == 1;
     if mode {
         clear_screen();
@@ -43,6 +71,7 @@ fn main() {
             if finished_actions() { break; }
         };
     } else {
+        let args = Args::parse();
         handle_arguments(args);
     }
 }
@@ -53,7 +82,7 @@ fn main() {
 /* Accepts the arguments handed to the program and executes the appropriate
 action without printing anything, or exits with the correct error code should
 something go wrong in the process (also without printing anything). */
-fn handle_arguments(args: Vec<String>) {
+fn handle_arguments(args: Args) {
 
 }
 
