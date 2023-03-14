@@ -3,14 +3,15 @@
 // 2023 Mar 9
 
 pub mod utils;
-pub mod remove;
 pub mod build;
-pub mod check;
+pub mod init;
 pub mod help;
-pub mod add;
 
 
 use clap::{Args, Parser, Subcommand};
+use help::error::error_102;
+use utils::folder_exists;
+use std::process;
 
 
 /* COMMAND LINE INTERFACE */
@@ -20,10 +21,10 @@ use clap::{Args, Parser, Subcommand};
 #[command(propagate_version = true)]
 struct Cli {
     /// Send no output to STDOUT during execution
-    #[arg(short, long)]
+    #[arg(short, long, group = "out")]
     quiet: bool,
     /// Provide extra execution information to STDOUT
-    #[arg(short, long)]
+    #[arg(short, long, group = "out")]
     verbose: bool,
     /// Skips prompts for confirming destructive operations
     #[arg(short, long)]
@@ -35,20 +36,16 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Uses canon JSON to create a documentation tree with many individual 
-    /// files from a project's source code, or otherwise a simple directory 
-    /// structure
+    /// Create a documentation tree based on a canonical JSON file
     Tree(TreeArgs),
-    /// Uses canon JSON to create a single file containing either a document
-    /// template or documentation for a source code file
+    /// Create a documentation file based on a canonical JSON file
     File(FileArgs),
-    /// Creates a default JSON doctree and docfile specifier, 'canon.json',
-    /// in the target directory
+    /// Create a default JSON doctree and docfile specifier file
     Init(InitArgs)
 }
 
 
-/* COMMANDS */
+/* BUILD COMMANDS */
 
 #[derive(Args)]
 struct TreeArgs {
@@ -90,7 +87,19 @@ fn main() {
 
         },
         Commands::Init(args) => {
-
+            init(&args.target, cli.quiet, cli.verbose);
         }
     }
+    process::exit(exitcode::OK);
 }
+
+
+/* EXECUTORS */
+
+/// Verifies that the target directory passed into init exists and processes
+/// initialization request
+fn init(path: &String, quiet: bool, verbose: bool) {
+    if !folder_exists(path) { error_102(); }
+
+}
+
