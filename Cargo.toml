@@ -1,7 +1,9 @@
 [package]
-name = "rose"
+name = "Rose"
 version = "0.1.0"
 edition = "2021"
+authors = ["Max F. <maxfierro@berkeley.edu>"]
+description = "Helps to write and upkeep documentation."
 
 [dependencies]
 clap = { version = "4.1.8", features = ["derive"] }
