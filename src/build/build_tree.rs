@@ -2,34 +2,17 @@
 // maxfierro@berkeley.edu
 // 2023 Mar 9
 
-use std::path::Path;
 
-
-/* FILE CHECKER FUNCTIONS */
-
-/* Checks that all referenced files exist and confirms with user before 
-completing action (generating a doctree from a canon JSON). */
-pub fn docs_from_canon_check(silent: bool, source: &str, dest: &str) {
-    let source = Path::new(source);
-    let dest = Path::new(dest);
-    docs_from_canon(source, dest);
-}
-
-/* Checks that all referenced files exist and confirms with user before 
-completing action (generating a doctree from a project). */
-pub fn docs_from_project_check(silent: bool, source: &str, dest: &str) {
-    let source = Path::new(source);
-    let dest = Path::new(dest);
-    docs_from_project(source, dest);
-}
-
-
-/* EXECUTIONERS */
-
-fn docs_from_canon(source: &Path, dest: &Path) {
+/// Creates a directory tree based on a canonical file if it exists, and
+/// otherwise creates one based on a default configuration which should not
+/// need the canonical file to exist
+pub fn tree_from_canon(dest: &str, quiet: bool, verbose: bool) {
     // TODO
 }
 
-fn docs_from_project(source: &Path, dest: &Path) {
+/// Creates a directory tree based on a canonical json format specifier,
+/// and populates it with auto-generated documentation files from source code
+/// (also according to the format specifier)
+pub fn tree_from_project(source: &str, dest: &str, quiet: bool, verbose: bool) {
     // TODO
 }
