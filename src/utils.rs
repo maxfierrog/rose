@@ -5,15 +5,6 @@
 
 use std::path::Path;
 
-
-/* TERMINAL FUNCTIONS */
-
-/* Deletes a specified amount of printed lines. */
-pub fn clear_screen() {
-    print!("\x1B[2J\x1B[1;1H");
-}
-
-
 /* FILE FUNCTIONS */
 
 /* Returns true iff the file exists and it is not a directory. It assumes
