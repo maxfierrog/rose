@@ -13,6 +13,8 @@ pub mod add;
 use clap::{Args, Parser, Subcommand};
 
 
+/* COMMAND LINE INTERFACE */
+
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 #[command(propagate_version = true)]
@@ -23,64 +25,71 @@ struct Cli {
     /// Provide extra execution information to STDOUT
     #[arg(short, long)]
     verbose: bool,
-    /// Skips prompts for destructive operations
+    /// Skips prompts for confirming destructive operations
     #[arg(short, long)]
     yes: bool,
+
     #[command(subcommand)]
     command: Commands
 }
 
-
 #[derive(Subcommand)]
 enum Commands {
-    /// Create a documentation tree with many individual files
-    Doctree(MakeTree),
-    /// Create a single documentation file
-    Docfile(MakeFile),
-    /// Creates a default JSON doctree and docfile specifier in target
-    Init(Init)
+    /// Uses canon JSON to create a documentation tree with many individual 
+    /// files from a project's source code, or otherwise a simple directory 
+    /// structure
+    Tree(TreeArgs),
+    /// Uses canon JSON to create a single file containing either a document
+    /// template or documentation for a source code file
+    File(FileArgs),
+    /// Creates a default JSON doctree and docfile specifier, 'canon.json',
+    /// in the target directory
+    Init(InitArgs)
 }
 
+
+/* COMMANDS */
+
 #[derive(Args)]
-struct MakeTree {
-    /// If provided, generates doctree based on project's source code
+struct TreeArgs {
+    /// Project directory path (optional)
     #[arg(short, long)]
     project: Option<String>,
-
-    /// Destination directory for documentation tree
+    /// Destination directory
     #[arg(short, long)]
     dest: String
 }
 
 #[derive(Args)]
-struct MakeFile {
-    /// If provided, generates document based on file's source code
+struct FileArgs {
+    /// Source code filepath (optional)
     #[arg(short, long)]
     source: Option<String>,
-
-    /// Destination directory for document
+    /// Destination directory
     #[arg(short, long)]
     dest: String
 }
 
 #[derive(Args)]
-struct Init {
-    /// Destination directory for JSON architecture spec
+struct InitArgs {
+    /// Target directory path
     #[arg(short, long)]
     target: String
 }
 
 
+/* PROGRAM ENTRY POINT */
+
 fn main() {
     let cli = Cli::parse();
     match &cli.command {
-        Commands::Doctree(MakeTree) => {
+        Commands::Tree(args) => {
 
         },
-        Commands::Docfile(MakeFile) => {
+        Commands::File(args) => {
 
         },
-        Commands::Init(Init) => {
+        Commands::Init(args) => {
 
         }
     }
